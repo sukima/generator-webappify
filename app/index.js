@@ -62,6 +62,7 @@ var informUserAboutDependencies = function (dependencies) {
 var BasicBrowserifyWebappGenerator = module.exports = function BasicBrowserifyWebappGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
+  this.packagename = this._.slugify(this.appname);
   this.currentYear = (new Date()).getFullYear();
 
   this.on('end', function () {
