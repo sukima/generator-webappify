@@ -41,12 +41,32 @@ describe('basic-browserify-webapp generator', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'githubUser': 'sukima',
-      'packageChoices': {}
+      'githubUser': 'someuser',
+      'packageChoices': []
     });
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
       helpers.assertFiles(expected);
+      done();
+    });
+  });
+
+  it('adds expected packages', function (done) {
+    helpers.mockPrompt(this.app, {
+      'githubUser': 'someuser',
+      'packageChoices': ['q', 'backbone']
+    });
+    this.app.options['skip-install'] = true;
+    this.app.run({}, function () {
+      helpers.assertFile('bower.json', /"q":/);
+      helpers.assertFile('bower.json', /"jquery":/);
+      helpers.assertFile('bower.json', /"underscore":/);
+      helpers.assertFile('index.html', /src=".*\/q/);
+      helpers.assertFile('index.html', /src=".*\/jquery/);
+      helpers.assertFile('index.html', /src=".*\/underscore/);
+      helpers.assertFile('test/index.html', /src=".*\/q/);
+      helpers.assertFile('test/index.html', /src=".*\/jquery/);
+      helpers.assertFile('test/index.html', /src=".*\/underscore/);
       done();
     });
   });

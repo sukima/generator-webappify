@@ -6,13 +6,13 @@
   <link rel="stylesheet" href="../bower_components/jasmine/lib/jasmine-core/jasmine.css">
 </head>
 <body>
-  <% if (packageChoices['jquery']) { %><script src="../bower_components/jquery/jquery.js"></script><% } %>
-  <% if (packageChoices['underscore']) { %><script src="../bower_components/underscore/underscore.js"></script><% } %>
-  <% if (packageChoices['backbone']) { %><script src="../bower_components/backbone/backbone.js"></script><% } %>
-  <% if (packageChoices['q']) { %><script src="../bower_components/q/q.js"></script><% } %>
+  <% if (dependencies['jquery']) { %><script src="../bower_components/jquery/jquery.js"></script><% } %>
+  <% if (dependencies['underscore']) { %><script src="../bower_components/underscore/underscore.js"></script><% } %>
+  <% if (dependencies['backbone']) { %><script src="../bower_components/backbone/backbone.js"></script><% } %>
+  <% if (dependencies['q']) { %><script src="../bower_components/q/q.js"></script><% } %>
   <script src="../bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
   <script src="../bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
-  <% if (packageChoices['jasmine-jquery']) { %><script src="../bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script><% } %>
+  <% if (dependencies['jasmine-jquery']) { %><script src="../bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script><% } %>
   <script src="/testem.js"></script>
   <script src="../app/app.js"></script>
   <script src="specs.js"></script>
@@ -21,7 +21,7 @@
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
 
-      <% if (packageChoices['jasmine-jquery']) { %>
+      <% if (dependencies['jasmine-jquery']) { %>
       jasmine.getFixtures().fixturesPath = "fixtures";
       <% } %>
 

@@ -18,22 +18,45 @@ if (proxy) {
 var GitHubApi = require('github');
 var github = new GitHubApi(githubOptions);
 
-var checkPackageDependencies = function (packageChoices) {
-  if (packageChoices['jquery-mobile-bower']) { packageChoices.jquery = true; }
-  if (packageChoices.backbone) { packageChoices.underscore = true; }
-  if (packageChoices.jquery) { packageChoices['jasmine-jquery'] = true; }
-  packageChoices.jasmine = true;
-  return packageChoices;
+var buildPackageDependencies = function (packageChoices) {
+  var i, len, dependencies = {};
+  for (i = 0, len = packageChoices.length; i < len; i++) {
+    dependencies[packageChoices[i]] = true;
+  }
+  if (dependencies.backbone) {
+    dependencies.jquery = dependencies.jquery || 'Backbone';
+    dependencies.underscore = dependencies.underscore || 'Backbone';
+  }
+  if (dependencies['jquery-mobile-bower']) {
+    dependencies.jquery = dependencies.jquery || 'jQuery Mobile';
+  }
+  if (dependencies.jquery) {
+    dependencies['jasmine-jquery'] = true;
+  }
+  dependencies.jasmine = true;
+  return dependencies;
 };
 
 var chooseDependencies = function (list) {
-  var choice, dependencies = [];
+  var choice, json_options = [];
   for (choice in list) {
-    if (this.packageChoices[choice]) {
-      dependencies.push('"' + choice + '": "' + list[choice] + '"');
+    if (this.dependencies[choice]) {
+      json_options.push('"' + choice + '": "' + list[choice] + '"');
     }
   }
-  return dependencies.join(',\n    ');
+  return json_options.join(',\n    ');
+};
+
+var informUserAboutDependencies = function (dependencies) {
+  var name;
+  for (name in dependencies) {
+    if (dependencies[name] !== true) {
+      console.log("" + dependencies[name] + " depends on " + name + ". I'll add it for you.");
+    }
+  }
+  if (dependencies['jasmine-jquery']) {
+    console.log("Because your using jQuery I'll include the Jasmine jQuery package for you.");
+  }
 };
 
 var BasicBrowserifyWebappGenerator = module.exports = function BasicBrowserifyWebappGenerator(args, options, config) {
@@ -83,9 +106,11 @@ BasicBrowserifyWebappGenerator.prototype.askFor = function askFor() {
   }];
 
   this.prompt(prompts, function (props) {
-    this.githubUser     = props.githubUser;
-    this.packageChoices = checkPackageDependencies(props.packageChoices);
+    this.githubUser         = props.githubUser;
+    this.dependencies       = buildPackageDependencies(props.packageChoices);
     this.chooseDependencies = chooseDependencies.bind(this);
+
+    informUserAboutDependencies(this.dependencies);
 
     done();
   }.bind(this));
