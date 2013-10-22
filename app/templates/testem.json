@@ -1,5 +1,15 @@
 {
   "framework": "jasmine",
   "test_page": "test/index.html",
-  "before_tests": "grunt browserify:test"
+  "before_tests": "grunt browserify:test",
+  "src_files": [
+    "src/**/*.js",
+    "src/**/*.coffee",
+    "src/**/*.litcoffee",
+    "src/**/*.coffee.md",
+    "test/spec/**/*.js",
+    "test/spec/**/*.coffee",
+    "test/spec/**/*.litcoffee",
+    "test/spec/**/*.coffee.md"
+  ]
 }
