@@ -3,7 +3,7 @@
 
 var assert  = require('assert');
 
-describe('basic-browserify-webapp generator', function () {
+describe('webappify generator', function () {
   it('can be imported without blowing up', function () {
     var app = require('../app');
     assert(app !== undefined);

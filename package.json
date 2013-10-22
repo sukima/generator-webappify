@@ -1,12 +1,12 @@
 {
-  "name": "generator-basic-browserify-webapp",
+  "name": "generator-webappify",
   "version": "0.0.1",
-  "description": "A generator for Yeoman",
+  "description": "A basic webapp generator for Yeoman based on browserify, CS, jQuery, JQM, Backbone, testem, and Jasmine support",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/sukima/generator-basic-browserify-webapp",
-  "bugs": "https://github.com/sukima/generator-basic-browserify-webapp/issues",
+  "homepage": "https://github.com/sukima/generator-webappify",
+  "bugs": "https://github.com/sukima/generator-webappify/issues",
   "author": {
     "name": "Devin Weaver",
     "email": "suki@tritarget.org",
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sukima/generator-basic-browserify-webapp.git"
+    "url": "git://github.com/sukima/generator-webappify.git"
   },
   "scripts": {
     "test": "mocha"
