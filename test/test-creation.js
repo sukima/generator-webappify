@@ -31,10 +31,8 @@ describe('webappify generator', function () {
       '.editorconfig',
       'testem.json',
       'test/index.html',
-      'test/fixtures',
       'test/spec/basic_spec.coffee',
       'test/spec/my_module_spec.coffee',
-      'test/fixtures/.gitkeep',
       'src/.gitkeep',
       'src/app.coffee',
       'src/my_module.coffee'
@@ -79,6 +77,22 @@ describe('webappify generator', function () {
     this.app.options['skip-install'] = true;
     this.app.run({}, function () {
       helpers.assertFile('index.html', /data-role="page"/);
+      done();
+    });
+  });
+
+  it('creates a test/fixtures folder', function (done) {
+    var expected = [
+      'test/fixtures'
+    ];
+
+    helpers.mockPrompt(this.app, {
+      'githubUser': 'someuser',
+      'packageChoices': ['jquery']
+    });
+    this.app.options['skip-install'] = true;
+    this.app.run({}, function () {
+      helpers.assertFiles(expected);
       done();
     });
   });

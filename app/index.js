@@ -143,7 +143,6 @@ BasicBrowserifyWebappGenerator.prototype.app = function app() {
 
 BasicBrowserifyWebappGenerator.prototype.tests = function tests() {
   this.mkdir('test');
-  this.mkdir('test/fixtures');
   this.mkdir('test/spec');
   this.copy('test/spec/basic_spec.coffee', 'test/spec/basic_spec.coffee');
   this.copy('test/spec/my_module_spec.coffee', 'test/spec/my_module_spec.coffee');
@@ -153,8 +152,10 @@ BasicBrowserifyWebappGenerator.prototype.tests = function tests() {
 BasicBrowserifyWebappGenerator.prototype.gitfiles = function gitfiles() {
   this.copy('gitignore', '.gitignore');
   this.mkdir('test');
-  this.mkdir('test/fixtures');
-  this.write('test/fixtures/.gitkeep', '');
+  if (this.dependencies['jasmine-jquery']) {
+    this.mkdir('test/fixtures');
+    this.write('test/fixtures/.gitkeep', '');
+  }
   this.mkdir('src');
   this.write('src/.gitkeep', '');
 };
