@@ -2,6 +2,46 @@
 
 A generator for [Yeoman](http://yeoman.io).
 
+This generator will make a simple webapp which uses [Jasmine][], [CoffeeScript][], and [Browserify][]. Out of the box it supports [testem][].
+
+You can any choose the following packages: [jQuery][], [jQuery Mobile][JQM], [Underscore][], [Backbone][], and [Q][]
+
+It uses [Jasmine][] for the test framework. And will also include [Jasmine jQuery][jasminejq] if needed.
+
+[CoffeeScript]: http://coffeescript.org/
+[Browserify]: http://browserify.org/
+[testem]: https://github.com/airportyh/testem
+[Jasmine]: http://pivotal.github.io/jasmine/
+[jasminejq]: https://github.com/velesin/jasmine-jquery
+[jQuery]: http://jquery.com/
+[JQM]: http://jquerymobile.com/
+[Underscore]: http://underscorejs.org/
+[Backbone]: http://backbonejs.org/
+[Q]: http://documentup.com/kriskowal/q/
+
+## Grunt tasks
+
+- `default` - Build `app/app.js` from modules in `src/` folder.
+- `test` - Build `test/specs.js` from specs in `test/spec/` folder.
+- `clean` - Removes build files.
+
+## Output
+
+    output/
+    ├── Gruntfile.coffee
+    ├── bower.json
+    ├── index.html
+    ├── package.json
+    ├── src
+    │   ├── app.coffee
+    │   └── my_module.coffee
+    ├── test
+    │   ├── fixtures
+    │   ├── index.html
+    │   └── spec
+    │       ├── basic_spec.coffee
+    │       └── my_module_spec.coffee
+    └── testem.json
 
 ## Getting Started
 
