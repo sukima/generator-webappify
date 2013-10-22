@@ -110,7 +110,9 @@ BasicBrowserifyWebappGenerator.prototype.askFor = function askFor() {
 
   this.prompt(prompts, function (props) {
     this.githubUser         = props.githubUser;
+    this.packageChoices     = props.packageChoices;
     this.dependencies       = buildPackageDependencies(props.packageChoices);
+    this.depenencyNames     = Object.keys(this.dependencies);
     this.chooseDependencies = chooseDependencies.bind(this);
 
     informUserAboutDependencies(this.dependencies);
