@@ -1,0 +1,5 @@
+{
+  "framework": "jasmine",
+  "test_page": "test/index.html",
+  "before_tests": "grunt browserify:test"
+}

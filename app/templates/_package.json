@@ -1,0 +1,16 @@
+{
+  "name": "<%= appname %>",
+  "version": "0.0.0",
+  "author": {
+    "name": "<%= realname %>",
+    "email": "<%= email %>",
+    "url": "<%= githubUrl %>"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-browserify": "~1.2.9",
+    "browserify": "~2.34.1",
+    "coffeeify": "~0.5.1"
+  }
+}

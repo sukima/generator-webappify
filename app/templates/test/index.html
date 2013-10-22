@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jasmine Spec Runner</title>
+  <link rel="stylesheet" href="../bower_components/jasmine/lib/jasmine-core/jasmine.css">
+</head>
+<body>
+  <% if (packageChoices['jquery']) { %><script src="../bower_components/jquery/jquery.js"></script><% } %>
+  <% if (packageChoices['underscore']) { %><script src="../bower_components/underscore/underscore.js"></script><% } %>
+  <% if (packageChoices['backbone']) { %><script src="../bower_components/backbone/backbone.js"></script><% } %>
+  <% if (packageChoices['q']) { %><script src="../bower_components/q/q.js"></script><% } %>
+  <script src="../bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
+  <script src="../bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
+  <% if (packageChoices['jasmine-jquery']) { %><script src="../bower_components/jasmine-jquery/lib/jasmine-jquery.js"></script><% } %>
+  <script src="/testem.js"></script>
+  <script src="../app/app.js"></script>
+  <script src="specs.js"></script>
+  <script type="text/javascript">
+    (function() {
+      var jasmineEnv = jasmine.getEnv();
+      jasmineEnv.updateInterval = 1000;
+
+      <% if (packageChoices['jasmine-jquery']) { %>
+      jasmine.getFixtures().fixturesPath = "fixtures";
+      <% } %>
+
+      var trivialReporter = new jasmine.TrivialReporter();
+
+      jasmineEnv.addReporter(trivialReporter);
+
+      jasmineEnv.specFilter = function(spec) {
+      return trivialReporter.specFilter(spec);
+      };
+
+      var currentWindowOnload = window.onload;
+
+      window.onload = function() {
+      if (currentWindowOnload) {
+      currentWindowOnload();
+      }
+      execJasmine();
+      };
+
+      function execJasmine() {
+        jasmineEnv.execute();
+      }
+
+    })();
+  </script>
+</body>
+</html>
