@@ -62,6 +62,7 @@ var informUserAboutDependencies = function (dependencies) {
 var BasicBrowserifyWebappGenerator = module.exports = function BasicBrowserifyWebappGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
+  this.chooseDependencies = chooseDependencies.bind(this);
   this.packagename = this._.slugify(this.appname);
   this.currentYear = (new Date()).getFullYear();
 
@@ -113,7 +114,6 @@ BasicBrowserifyWebappGenerator.prototype.askFor = function askFor() {
     this.packageChoices     = props.packageChoices;
     this.dependencies       = buildPackageDependencies(props.packageChoices);
     this.depenencyNames     = Object.keys(this.dependencies);
-    this.chooseDependencies = chooseDependencies.bind(this);
 
     informUserAboutDependencies(this.dependencies);
 
