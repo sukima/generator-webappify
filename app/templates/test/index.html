@@ -18,33 +18,30 @@
   <script type="text/javascript">
     (function() {
       var jasmineEnv = jasmine.getEnv();
-      jasmineEnv.updateInterval = 1000;
+      jasmineEnv.updateInterval = 250;
 
       <% if (dependencies['jasmine-jquery']) { %>
       jasmine.getFixtures().fixturesPath = "fixtures";
       <% } %>
 
-      var trivialReporter = new jasmine.TrivialReporter();
-
-      jasmineEnv.addReporter(trivialReporter);
+      var htmlReporter = new jasmine.HtmlReporter();
+      jasmineEnv.addReporter(htmlReporter);
 
       jasmineEnv.specFilter = function(spec) {
-      return trivialReporter.specFilter(spec);
+        return htmlReporter.specFilter(spec);
       };
 
       var currentWindowOnload = window.onload;
-
       window.onload = function() {
-      if (currentWindowOnload) {
-      currentWindowOnload();
-      }
-      execJasmine();
+        if (currentWindowOnload) {
+          currentWindowOnload();
+        }
+        execJasmine();
       };
 
       function execJasmine() {
         jasmineEnv.execute();
       }
-
     })();
   </script>
 </body>
