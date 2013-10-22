@@ -70,4 +70,16 @@ describe('basic-browserify-webapp generator', function () {
       done();
     });
   });
+
+  it('includes JQM template', function (done) {
+    helpers.mockPrompt(this.app, {
+      'githubUser': 'someuser',
+      'packageChoices': ['jquery-mobile-bower']
+    });
+    this.app.options['skip-install'] = true;
+    this.app.run({}, function () {
+      helpers.assertFile('index.html', /data-role="page"/);
+      done();
+    });
+  });
 });

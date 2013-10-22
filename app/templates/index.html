@@ -10,8 +10,36 @@
   <% if (dependencies['backbone']) { %><script src="bower_components/backbone/backbone-min.js"></script><% } %>
   <% if (dependencies['q']) { %><script src="bower_components/q/q.js"></script><% } %>
   <script src="app/app.js"></script>
+  <% if (dependencies['jquery-mobile-bower']) { %>
+  <style type="text/css">
+    .footer {
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+  <% } %>
 </head>
 <body>
+  <% if (dependencies['jquery-mobile-bower']) { %>
+
+  <div id="main" data-role="page" data-theme="d">
+
+    <div class="header" data-role="header" data-theme="c">
+      <h1><%= appname %></h1>
+    </div>
+
+    <div class="content" data-role="content" data-theme="c">
+      <div id="output"></div>
+    </div>
+
+    <div class="footer" data-role="footer" data-theme="c">
+      <footer>© <%= realname %>, <%= currentYear %></footer>
+    </div>
+
+  </div>
+
+  <% } else { %>
   <div id="output"></div>
+  <% } %>
 </body>
 </html>

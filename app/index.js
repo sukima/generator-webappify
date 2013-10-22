@@ -62,6 +62,8 @@ var informUserAboutDependencies = function (dependencies) {
 var BasicBrowserifyWebappGenerator = module.exports = function BasicBrowserifyWebappGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
+  this.currentYear = (new Date()).getFullYear();
+
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
