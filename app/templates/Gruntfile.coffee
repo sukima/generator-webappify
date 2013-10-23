@@ -18,7 +18,12 @@ module.exports = (grunt) ->
           transform: ["coffeeify"]
       test:
         files:
-          "test/specs.js": ["test/spec/**/*.js", "test/spec/**/*.coffee"]
+          "test/specs.js": [
+            "test/spec/**/*helper.js"
+            "test/spec/**/*helper.coffee"
+            "test/spec/**/*spec.js"
+            "test/spec/**/*spec.coffee"
+          ]
         options:
           debug: true
           transform: ["coffeeify"]
