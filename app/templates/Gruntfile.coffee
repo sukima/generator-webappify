@@ -14,7 +14,7 @@ module.exports = (grunt) ->
         ext: ".js"
         dest: "app"
         options:
-          debug: true
+          debug: false
           transform: ["coffeeify"]
       test:
         files:
