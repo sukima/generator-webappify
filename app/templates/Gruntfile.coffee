@@ -7,6 +7,15 @@ module.exports = (grunt) ->
       "test/specs.js"
     ]
     browserify:
+      dev:
+        expand: true
+        cwd: "src"
+        src: "app.coffee"
+        ext: ".js"
+        dest: "app"
+        options:
+          debug: true
+          transform: ["coffeeify"]
       dist:
         expand: true
         cwd: "src"
