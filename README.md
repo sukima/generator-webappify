@@ -11,7 +11,7 @@ It uses [Jasmine][] for the test framework. And will also include [Jasmine jQuer
 [CoffeeScript]: http://coffeescript.org/
 [Browserify]: http://browserify.org/
 [testem]: https://github.com/airportyh/testem
-[Jasmine]: http://pivotal.github.io/jasmine/
+[Jasmine]: https://jasmine.github.io/
 [jasminejq]: https://github.com/velesin/jasmine-jquery
 [jQuery]: http://jquery.com/
 [JQM]: http://jquerymobile.com/
